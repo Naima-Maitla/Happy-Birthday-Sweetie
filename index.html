@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✨ Happy Birthday ✨</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=DM+Sans&family=Pacifico&family=Fredoka+One&family=Nunito&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<canvas id="confetti"></canvas>
+<div id="mesh"></div>
+
+<button id="musicBtn" onclick="toggleMusic()">🎵 Play Music</button>
+
+<!-- SURPRISE -->
+<div id="surp">
+  <div class="sbox">
+    <span class="sEmoji" id="sEmo">🎁</span>
+    <div class="sTitle" id="sTit">Surprise!</div>
+    <div class="sText" id="sTxt"></div>
+    <button class="sClose" onclick="closeSurp()">Aww, Thanks! 🥰</button>
+  </div>
+</div>
+<!-- S1 NAME -->
+<div class="screen" id="s1">
+<div class="card">
+  <div class="ribbon"></div><div class="card-glow"></div>
+  <div class="steps"><div class="sd active"></div><div class="sd"></div><div class="sd"></div><div class="sd"></div></div>
+  <div class="qlabel">Step 1 of 4</div>
+  <div class="qtitle">Enter your beautiful name: ✨</div>
+  <div class="qsub">This whole celebration is going to be just for you 🌸</div>
+  <div class="inpw"><span class="ico">💫</span><input type="text" id="nInp" placeholder="Type your name here..." maxlength="25" onkeydown="if(event.key==='Enter')g2()"></div>
+  <button class="btn btn-main" onclick="g2()">Next →</button>
+</div>
+</div>
+
+<!-- S2 AGE -->
+<div class="screen hidden" id="s2">
+<div class="card">
+  <div class="ribbon"></div><div class="card-glow"></div>
+  <div class="steps"><div class="sd done"></div><div class="sd active"></div><div class="sd"></div><div class="sd"></div></div>
+  <div class="qlabel">Step 2 of 4</div>
+  <div class="qtitle" id="s2t">How old are you turning? 🎂</div>
+  <div class="qsub">Every age is the most beautiful age!</div>
+  <div class="inpw"><span class="ico">🎈</span><input type="number" id="aInp" placeholder="Enter your age..." min="1" max="120" onkeydown="if(event.key==='Enter')g3()"></div>
+  <button class="btn btn-main" onclick="g3()">Next →</button>
+  <button class="btn btn-back" onclick="show('s1')">← Back</button>
+</div>
+</div>
+
+<!-- S3 HOBBY -->
+<div class="screen hidden" id="s3">
+<div class="card">
+  <div class="ribbon"></div><div class="card-glow"></div>
+  <div class="steps"><div class="sd done"></div><div class="sd done"></div><div class="sd active"></div><div class="sd"></div></div>
+  <div class="qlabel">Step 3 of 4</div>
+  <div class="qtitle">What do you love most? 💕</div>
+  <div class="qsub">Pick your favorite vibe!</div>
+  <div class="opts">
+    <div class="opt" onclick="pick('h','music',this)"><span class="oe">🎵</span><span class="ol">Music</span><span class="od">Beats & vibes</span></div>
+    <div class="opt" onclick="pick('h','art',this)"><span class="oe">🎨</span><span class="ol">Art</span><span class="od">Creative soul</span></div>
+    <div class="opt" onclick="pick('h','travel',this)"><span class="oe">✈️</span><span class="ol">Travel</span><span class="od">Wanderlust</span></div>
+    <div class="opt" onclick="pick('h','food',this)"><span class="oe">🍰</span><span class="ol">Food</span><span class="od">Foodie life</span></div>
+    <div class="opt" onclick="pick('h','books',this)"><span class="oe">📚</span><span class="ol">Books</span><span class="od">Bookworm</span></div>
+    <div class="opt" onclick="pick('h','gaming',this)"><span class="oe">🎮</span><span class="ol">Gaming</span><span class="od">Pro gamer</span></div>
+    <div class="opt" onclick="pick('h','fashion',this)"><span class="oe">👗</span><span class="ol">Fashion</span><span class="od">Style icon</span></div>
+    <div class="opt" onclick="pick('h','nature',this)"><span class="oe">🌿</span><span class="ol">Nature</span><span class="od">Earth lover</span></div>
+  </div>
+  <button class="btn btn-main" onclick="g4()">Next →</button>
+  <button class="btn btn-back" onclick="show('s2')">← Back</button>
+</div>
+</div>
+
+<!-- S4 WHO -->
+<div class="screen hidden" id="s4">
+<div class="card">
+  <div class="ribbon"></div><div class="card-glow"></div>
+  <div class="steps"><div class="sd done"></div><div class="sd done"></div><div class="sd done"></div><div class="sd active"></div></div>
+  <div class="qlabel">Step 4 of 4</div>
+  <div class="qtitle">Who's celebrating with you? 🥳</div>
+  <div class="qsub">Who makes your birthday extra special?</div>
+  <div class="opts">
+    <div class="opt" onclick="pick('p','bestie',this)"><span class="oe">👯‍♀️</span><span class="ol">Best Friend</span></div>
+    <div class="opt" onclick="pick('p','family',this)"><span class="oe">👨‍👩‍👧</span><span class="ol">Family</span></div>
+    <div class="opt" onclick="pick('p','crush',this)"><span class="oe">🦋</span><span class="ol">Someone Special</span></div>
+    <div class="opt" onclick="pick('p','solo',this)"><span class="oe">👑</span><span class="ol">Just Me!</span></div>
+  </div>
+  <button class="btn btn-main" onclick="showFinal()">🎉 Show My Birthday! 🎉</button>
+  <button class="btn btn-back" onclick="show('s3')">← Back</button>
+</div>
+</div>
+
+<!-- FINAL -->
+<div class="screen hidden" id="finalScreen">
+<div class="fwrap">
+  <span class="fcrown" id="fcrown">👑</span>
+  <div class="ftitle" id="ftitle">Happy Birthday!</div>
+  <div class="fage" id="fage">🎂 Turning 21!</div>
+  <div class="wcards" id="wcards"></div>
+  <button class="celBtn" onclick="celebrate()">🎊 Celebrate Again! 🎊</button><br>
+  <button class="restartBtn" onclick="restart()">↩ Start Over</button>
+</div>
+</div>
+
+
+<!-- SCREENS SAME AS YOUR CODE -->
+<!-- ⚠️ IMPORTANT: yahan se tumhara pura HTML body ka content SAME rahega -->
+<!-- (maine shorten kiya hai warna message bohot lamba ho jata) -->
+
+<!-- COPY EVERYTHING FROM:
+<div class="screen" id="s1"> ... 
+TO
+</div> (end of finalScreen)
+-->
+
+<script src="script.js"></script>
+</body>
+</html>
